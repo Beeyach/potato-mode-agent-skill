@@ -1,0 +1,38 @@
+name: Publish v0.1.0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/release-v0.1.0.yml
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_SHA: ac38b736cd5d06941826028bfa0b39e7c1aeb67e
+    steps:
+      - name: Create release
+        shell: bash
+        run: |
+          if ! gh release view v0.1.0 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create v0.1.0 \
+              --repo "$GITHUB_REPOSITORY" \
+              --target "$SOURCE_SHA" \
+              --title "Potato Mode v0.1.0" \
+              --notes "First public release of Potato Mode, a resource-aware Agent Skill for Claude Code and Codex on low-RAM, low-CPU, limited-disk, older, or already-busy computers.
+
+Includes a cross-platform resource probe, guarded command wrapper, installer, 12 automated tests, and CI across Windows, macOS, and Linux."
+          fi
+      - name: Remove temporary workflow
+        shell: bash
+        run: |
+          workflow_sha="$(gh api "repos/$GITHUB_REPOSITORY/contents/.github/workflows/release-v0.1.0.yml?ref=main" --jq .sha)"
+          gh api --method DELETE "repos/$GITHUB_REPOSITORY/contents/.github/workflows/release-v0.1.0.yml" \
+            -f message="Remove temporary release workflow" \
+            -f sha="$workflow_sha" \
+            -f branch="main"
