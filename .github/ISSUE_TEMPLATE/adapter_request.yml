@@ -1,0 +1,25 @@
+name: Tool support request
+description: Propose a build, test, or package tool for Potato Mode
+title: "[Tool]: "
+labels: [enhancement, good first issue]
+body:
+  - type: input
+    id: tool
+    attributes:
+      label: Tool and version
+      placeholder: ExampleTool 1.2
+    validations:
+      required: true
+  - type: textarea
+    id: controls
+    attributes:
+      label: Documented resource controls
+      description: Link to official documentation for worker, memory, cache, or concurrency settings.
+    validations:
+      required: true
+  - type: textarea
+    id: test
+    attributes:
+      label: How support can be tested
+    validations:
+      required: true

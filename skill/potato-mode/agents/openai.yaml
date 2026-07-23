@@ -1,0 +1,4 @@
+interface:
+  display_name: "Potato Mode"
+  short_description: "Keep coding agents light on weak hardware"
+  default_prompt: "Use $potato-mode to complete this task without overwhelming my computer."
