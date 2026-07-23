@@ -24,9 +24,7 @@ jobs:
               --repo "$GITHUB_REPOSITORY" \
               --target "$SOURCE_SHA" \
               --title "Potato Mode v0.1.0" \
-              --notes "First public release of Potato Mode, a resource-aware Agent Skill for Claude Code and Codex on low-RAM, low-CPU, limited-disk, older, or already-busy computers.
-
-Includes a cross-platform resource probe, guarded command wrapper, installer, 12 automated tests, and CI across Windows, macOS, and Linux."
+              --notes "First public release of Potato Mode. Includes a cross-platform resource probe, guarded command wrapper, installer, 12 automated tests, and CI across Windows, macOS, and Linux."
           fi
       - name: Remove temporary workflow
         shell: bash
